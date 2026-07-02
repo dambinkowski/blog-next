@@ -1,0 +1,98 @@
+BLOG APP — PLAN & CHECKLIST
+===========================
+
+PAGES
+
+-----
+/              Welcome Page
+- About the app, register + login buttons
+
+/register      Register Page
+    Name, 
+    email, password, submit
+
+/confirm            Email Confirmation
+                      - "Check your email" message
+
+/login              Login Page
+                      - Email, password, link to register
+
+/dashboard          Dashboard (expandable later — messages etc.)
+                      - Welcome message, quick summary
+
+/posts              My Posts List
+                      - Date, title, excerpt, edit/delete links
+
+/posts/create       Create Post
+                      - Title, content, publish button
+
+/posts/[id]/edit    Edit Post
+                      - Pre-filled form, save button
+
+/posts/[id]         Post Detail — Owner
+                      - Full content, edit + delete buttons
+
+/blog               Public Blog
+                      - All published posts, date/title/excerpt
+
+/blog/[id]          Post Detail — Reader
+                      - Author (links to profile), title, content, date
+
+/profile/[id]       Profile Page (public)
+                      - Author name, list of their posts
+
+
+STEPS
+-----
+[ ] 1.  Set up Supabase project
+          - Create project on supabase.com
+          - Copy project URL and anon key
+          - Create .env.local with credentials
+
+[ ] 2.  Design and create database schema
+          - profiles table (id, username, created_at)
+          - posts table (id, author_id, title, content, created_at)
+          - Understand relationships between tables
+
+[ ] 3.  Connect Next.js with Supabase
+          - Install @supabase/supabase-js and @supabase/ssr
+          - Create browser client utility
+          - Create server client utility (for Server Components)
+
+[ ] 4.  Set up Row Level Security (RLS)
+          - Understand what RLS is and why it matters
+          - Policy: anyone can read posts
+          - Policy: only the author can insert, edit, delete their posts
+
+[ ] 5.  Auth — Register + Email Confirmation
+          - Build register page and form
+          - Handle submission with Server Action
+          - Supabase sends confirmation email automatically
+          - Build confirmation landing page
+
+[ ] 6.  Auth — Login + Logout
+          - Build login page and form
+          - Implement logout button
+          - Understand cookies vs localStorage for session storage
+
+[ ] 7.  Middleware — protect private routes
+          - Write Next.js middleware to check for a valid session
+          - Redirect unauthenticated users to /login
+          - Understand how middleware fits into the request lifecycle
+
+[ ] 8.  Build all pages (no styling)
+          - Welcome, Dashboard, My posts list
+          - Create post, Edit post, Post detail (owner)
+          - Public blog list, Post detail (reader), Profile page
+
+[ ] 9.  Unit testing
+
+[ ] 10. Styling
+
+
+SECURITY RULES
+--------------
+- Author can create, edit, delete their own posts
+- Reader can only read published posts
+- RLS enforces this at the database level
+- Middleware enforces this at the route level
